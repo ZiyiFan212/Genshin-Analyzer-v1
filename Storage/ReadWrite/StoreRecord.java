@@ -1,59 +1,40 @@
 package Storage.ReadWrite;
 
-import Model.InfoRecord;
+import Model.RecordTemplate.InfoRecord;
+import Storage.Configuration.StorageConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import core.*;
-import core.Genshin.GameService;
-import core.Genshin.GenshinPlayerData;
-import core.Genshin.GenshinRecordFetcher;
+import Core.Genshin.GenshinPlayerData;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Map;
 
-
+/**
+ * Teacher: Daniel Vriesinga
+ * Frank Fan at 2026/04/23
+ *
+ * This class stores the record to the directory initialized in {@link StorageConfig}
+ * Export to JSON format for reusability with external Jackson library.
+ */
 public class StoreRecord {// start class
 
-    // data that needs to be stored
-    private final GameService gameService;
-    // path to write files
-    private final Path directory;
-    // mapper object
-    private final ObjectMapper mapper;
-
-    public StoreRecord (GameService gameService, Path directory) {
-        this.gameService = gameService;
-        this.directory = directory;
-        this.mapper = new ObjectMapper();
-        this.mapper.enable(com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT); // human-readable
-    }
-
-    public void writeJSON() throws PathValidator.PathException, IOException, GenshinRecordFetcher.EmptyListException,
-            GenshinRecordFetcher.EmptyPathException, GenshinRecordFetcher.MissingComponentException, ReadRecord.DirectoryError {
-
-        Map<String, GenshinPlayerData> map = this.gameService.fetchAllData();
-        GenshinPlayerData oldData = map.entrySet().iterator().next().getValue();
-        InfoRecord infoRecord = oldData.info().withCurrentTime();
-
-        saveToFile(new GenshinPlayerData(infoRecord, oldData.getRecords()));
-    }
-
-
-    // save this player's record to local
-    private void saveToFile(GenshinPlayerData playerData) throws IOException {
-        Path filePath = this.directory.resolve("Genshin-Analyzer V1.0 " + playerData.getInfo().getUid() + ".json");
-        mapper.writeValue(filePath.toFile(), playerData);
-    }
-
+    /**
+     * a method that serialize player data object to JSON file and store locally in given directory
+     * @param playerData game data with info and records list
+     * @param directory directory path
+     * @throws IOException caught when writing JSON file
+     */
     public static void savePlayerData(GenshinPlayerData playerData, Path directory) throws IOException {
+        // create a new mapper and enable pretty writing format
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT);
 
-        InfoRecord updatedInfo = playerData.getInfo().withCurrentTime();
-        GenshinPlayerData payload = new GenshinPlayerData(updatedInfo, playerData.getRecords());
+        // update info class with current time
+        InfoRecord updatedInfo = playerData.info().withCurrentTime();
+        GenshinPlayerData gpd = new GenshinPlayerData(updatedInfo, playerData.records());
 
-        Path filePath = directory.resolve("Genshin-Analyzer V1.0 " + payload.getInfo().getUid() + ".json");
-        mapper.writeValue(filePath.toFile(), payload);
+        // serialize objects to JSON files
+        Path filePath = directory.resolve("Genshin-Analyzer V1.0 " + gpd.info().getUid() + ".json");
+        mapper.writeValue(filePath.toFile(), gpd);
     }
 
 }// end class

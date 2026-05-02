@@ -1,0 +1,938 @@
+{
+  "11504" : {
+    "en" : "Summit Shaper",
+    "cn" : "斫峰之刃"
+  },
+  "11503" : {
+    "en" : "Freedom-Sworn",
+    "cn" : "苍古自由之誓"
+  },
+  "11505" : {
+    "en" : "Primordial Jade Cutter",
+    "cn" : "磐岩结绿"
+  },
+  "11509" : {
+    "en" : "Mistsplitter Reforged",
+    "cn" : "雾切之回光"
+  },
+  "15304" : {
+    "en" : "Slingshot",
+    "cn" : "弹弓"
+  },
+  "15425" : {
+    "en" : "Song of Stillness",
+    "cn" : "静谧之曲"
+  },
+  "15303" : {
+    "en" : "Recurve Bow",
+    "cn" : "反曲弓"
+  },
+  "15424" : {
+    "en" : "Scion of the Blazing Sun",
+    "cn" : "烈阳之嗣"
+  },
+  "15302" : {
+    "en" : "Sharpshooter's Oath",
+    "cn" : "神射手之誓"
+  },
+  "15301" : {
+    "en" : "Raven Bow",
+    "cn" : "鸦羽弓"
+  },
+  "15427" : {
+    "en" : "Range Gauge",
+    "cn" : "测距规"
+  },
+  "11502" : {
+    "en" : "Skyward Blade",
+    "cn" : "天空之刃"
+  },
+  "11501" : {
+    "en" : "Aquila Favonia",
+    "cn" : "风鹰剑"
+  },
+  "15426" : {
+    "en" : "Cloudforged",
+    "cn" : "筑云"
+  },
+  "15305" : {
+    "en" : "Messenger",
+    "cn" : "信使"
+  },
+  "15432" : {
+    "en" : "Sequence of Solitude",
+    "cn" : "冷寂迸音"
+  },
+  "14101" : {
+    "en" : "Apprentice's Notes",
+    "cn" : "学徒笔记"
+  },
+  "15431" : {
+    "en" : "Chain Breaker",
+    "cn" : "碎链"
+  },
+  "15430" : {
+    "en" : "Flower-Wreathed Feathers",
+    "cn" : "缀花之翎"
+  },
+  "11515" : {
+    "en" : "Absolution",
+    "cn" : "赦罪"
+  },
+  "11514" : {
+    "en" : "Uraku Misugiri",
+    "cn" : "有乐御簾切"
+  },
+  "11517" : {
+    "en" : "Azurelight",
+    "cn" : "苍耀"
+  },
+  "11516" : {
+    "en" : "Peak Patrol Song",
+    "cn" : "岩峰巡歌"
+  },
+  "11519" : {
+    "en" : "Lightbearing Moonshard",
+    "cn" : "朏魄含光"
+  },
+  "11518" : {
+    "en" : "Athame Artis",
+    "cn" : "黑蚀"
+  },
+  "15434" : {
+    "en" : "Rainbow Serpent's Rain Bow",
+    "cn" : "虹蛇的雨弦"
+  },
+  "15433" : {
+    "en" : "Snare Hook",
+    "cn" : "罗网勾针"
+  },
+  "11511" : {
+    "en" : "Key of Khaj-Nisut",
+    "cn" : "圣显之钥"
+  },
+  "11510" : {
+    "en" : "Haran Geppaku Futsu",
+    "cn" : "波乱月白经津"
+  },
+  "11513" : {
+    "en" : "Splendor of Tranquil Waters",
+    "cn" : "静水流涌之辉"
+  },
+  "11512" : {
+    "en" : "Light of Foliar Incision",
+    "cn" : "裁叶萃光"
+  },
+  "14430" : {
+    "en" : "Waveriding Whirl",
+    "cn" : "乘浪的回旋"
+  },
+  "14431" : {
+    "en" : "Ring of Yaxche",
+    "cn" : "木棉之环"
+  },
+  "15409" : {
+    "en" : "The Viridescent Hunt",
+    "cn" : "苍翠猎弓"
+  },
+  "15408" : {
+    "en" : "Blackcliff Warbow",
+    "cn" : "黑岩战弓"
+  },
+  "14434" : {
+    "en" : "Dawning Frost",
+    "cn" : "霜辰"
+  },
+  "15403" : {
+    "en" : "Sacrificial Bow",
+    "cn" : "祭礼弓"
+  },
+  "15402" : {
+    "en" : "The Stringless",
+    "cn" : "绝弦"
+  },
+  "13101" : {
+    "en" : "Beginner's Protector",
+    "cn" : "新手长枪"
+  },
+  "14432" : {
+    "en" : "Etherlight Spindlelute",
+    "cn" : "天光的纺琴"
+  },
+  "15401" : {
+    "en" : "Favonius Warbow",
+    "cn" : "西风猎弓"
+  },
+  "14433" : {
+    "en" : "Blackmarrow Lantern",
+    "cn" : "乌髓孑灯"
+  },
+  "15407" : {
+    "en" : "Compound Bow",
+    "cn" : "钢轮弓"
+  },
+  "15406" : {
+    "en" : "Prototype Crescent",
+    "cn" : "试作澹月"
+  },
+  "15405" : {
+    "en" : "Rust",
+    "cn" : "弓藏"
+  },
+  "15404" : {
+    "en" : "Royal Bow",
+    "cn" : "宗室长弓"
+  },
+  "15410" : {
+    "en" : "Alley Hunter",
+    "cn" : "暗巷猎手"
+  },
+  "15419" : {
+    "en" : "Ibis Piercer",
+    "cn" : "鹮穿之喙"
+  },
+  "15414" : {
+    "en" : "Hamayumi",
+    "cn" : "破魔之弓"
+  },
+  "15413" : {
+    "en" : "Windblume Ode",
+    "cn" : "风花之颂"
+  },
+  "15412" : {
+    "en" : "Mitternachts Waltz",
+    "cn" : "幽夜华尔兹"
+  },
+  "14201" : {
+    "en" : "Pocket Grimoire",
+    "cn" : "口袋魔导书"
+  },
+  "15411" : {
+    "en" : "Fading Twilight",
+    "cn" : "落霞"
+  },
+  "15418" : {
+    "en" : "End of the Line",
+    "cn" : "竭泽"
+  },
+  "15417" : {
+    "en" : "King's Squire",
+    "cn" : "王下近侍"
+  },
+  "15416" : {
+    "en" : "Mouun's Moon",
+    "cn" : "曚云之月"
+  },
+  "15415" : {
+    "en" : "Predator",
+    "cn" : "掠食者"
+  },
+  "15509" : {
+    "en" : "Thundering Pulse",
+    "cn" : "飞雷之弦振"
+  },
+  "15508" : {
+    "en" : "Aqua Simulacra",
+    "cn" : "若水"
+  },
+  "15507" : {
+    "en" : "Polar Star",
+    "cn" : "冬极白星"
+  },
+  "15502" : {
+    "en" : "Amos' Bow",
+    "cn" : "阿莫斯之弓"
+  },
+  "14412" : {
+    "en" : "Frostbearer",
+    "cn" : "忍冬之果"
+  },
+  "14413" : {
+    "en" : "Dodoco Tales",
+    "cn" : "嘟嘟可故事集"
+  },
+  "15501" : {
+    "en" : "Skyward Harp",
+    "cn" : "天空之翼"
+  },
+  "14410" : {
+    "en" : "Wine and Song",
+    "cn" : "暗巷的酒与诗"
+  },
+  "13201" : {
+    "en" : "Iron Point",
+    "cn" : "铁尖枪"
+  },
+  "14416" : {
+    "en" : "Wandering Evenstar",
+    "cn" : "流浪的晚星"
+  },
+  "14417" : {
+    "en" : "Fruit of Fulfillment",
+    "cn" : "盈满之实"
+  },
+  "14414" : {
+    "en" : "Hakushin Ring",
+    "cn" : "白辰之环"
+  },
+  "15503" : {
+    "en" : "Elegy for the End",
+    "cn" : "终末嗟叹之诗"
+  },
+  "14415" : {
+    "en" : "Oathsworn Eye",
+    "cn" : "证誓之明瞳"
+  },
+  "15513" : {
+    "en" : "Silvershower Heartstrings",
+    "cn" : "白雨心弦"
+  },
+  "14302" : {
+    "en" : "Thrilling Tales of Dragon Slayers",
+    "cn" : "讨龙英杰谭"
+  },
+  "14303" : {
+    "en" : "Otherworldly Story",
+    "cn" : "异世界行记"
+  },
+  "14424" : {
+    "en" : "Sacrificial Jade",
+    "cn" : "遗祀玉珑"
+  },
+  "15512" : {
+    "en" : "The First Great Magic",
+    "cn" : "最初的大魔术"
+  },
+  "15511" : {
+    "en" : "Hunter's Path",
+    "cn" : "猎人之径"
+  },
+  "14301" : {
+    "en" : "Magic Guide",
+    "cn" : "魔导绪论"
+  },
+  "14427" : {
+    "en" : "Ash-Graven Drinking Horn",
+    "cn" : "苍纹角杯"
+  },
+  "15516" : {
+    "en" : "Golden Frostbound Oath",
+    "cn" : "霜结的誓金枝"
+  },
+  "14304" : {
+    "en" : "Emerald Orb",
+    "cn" : "翡玉法球"
+  },
+  "14425" : {
+    "en" : "Flowing Purity",
+    "cn" : "纯水流华"
+  },
+  "15515" : {
+    "en" : "The Daybreak Chronicles",
+    "cn" : "黎明破晓之史"
+  },
+  "15514" : {
+    "en" : "Astral Vulture's Crimson Plumage",
+    "cn" : "星鹫赤羽"
+  },
+  "14426" : {
+    "en" : "Ballad of the Boundless Blue",
+    "cn" : "无垠蔚蓝之歌"
+  },
+  "14305" : {
+    "en" : "Twin Nephrite",
+    "cn" : "甲级宝珏"
+  },
+  "14519" : {
+    "en" : "Vivid Notions",
+    "cn" : "溢彩心念"
+  },
+  "14517" : {
+    "en" : "Starcaller's Watch",
+    "cn" : "祭星者之望"
+  },
+  "14518" : {
+    "en" : "Sunny Morning Sleep-In",
+    "cn" : "寝正月初晴"
+  },
+  "14511" : {
+    "en" : "A Thousand Floating Dreams",
+    "cn" : "千夜浮梦"
+  },
+  "13301" : {
+    "en" : "White Tassel",
+    "cn" : "白缨枪"
+  },
+  "13302" : {
+    "en" : "Halberd",
+    "cn" : "钺矛"
+  },
+  "14512" : {
+    "en" : "Tulaytullah's Remembrance",
+    "cn" : "图莱杜拉的回忆"
+  },
+  "14515" : {
+    "en" : "Crane's Echoing Call",
+    "cn" : "鹤鸣余音"
+  },
+  "13426" : {
+    "en" : "Dialogues of the Desert Sages",
+    "cn" : "沙中伟贤的对答"
+  },
+  "13427" : {
+    "en" : "Prospector's Drill",
+    "cn" : "勘探钻机"
+  },
+  "14516" : {
+    "en" : "Surf's Up",
+    "cn" : "冲浪时光"
+  },
+  "13424" : {
+    "en" : "Ballad of the Fjords",
+    "cn" : "峡湾长歌"
+  },
+  "13303" : {
+    "en" : "Black Tassel",
+    "cn" : "黑缨枪"
+  },
+  "14513" : {
+    "en" : "Cashflow Supervision",
+    "cn" : "金流监督"
+  },
+  "13425" : {
+    "en" : "Rightful Reward",
+    "cn" : "公义的酬报"
+  },
+  "14514" : {
+    "en" : "Tome of the Eternal Flow",
+    "cn" : "万世流涌大典"
+  },
+  "13430" : {
+    "en" : "Mountain-Bracing Bolt",
+    "cn" : "镇山之钉"
+  },
+  "14409" : {
+    "en" : "Eye of Perception",
+    "cn" : "昭心"
+  },
+  "14407" : {
+    "en" : "Mappa Mare",
+    "cn" : "万国诸海图谱"
+  },
+  "14408" : {
+    "en" : "Blackcliff Agate",
+    "cn" : "黑岩绯玉"
+  },
+  "14401" : {
+    "en" : "Favonius Codex",
+    "cn" : "西风秘典"
+  },
+  "14522" : {
+    "en" : "Nocturne's Curtain Call",
+    "cn" : "帷间夜曲"
+  },
+  "13433" : {
+    "en" : "Prospector's Shovel",
+    "cn" : "掘金之锹"
+  },
+  "12101" : {
+    "en" : "Waster Greatsword",
+    "cn" : "训练大剑"
+  },
+  "13434" : {
+    "en" : "Sacrificer's Staff",
+    "cn" : "圣祭者的辉杖"
+  },
+  "14402" : {
+    "en" : "The Widsith",
+    "cn" : "流浪乐章"
+  },
+  "13431" : {
+    "en" : "Footprint of the Rainbow",
+    "cn" : "虹的行迹"
+  },
+  "14520" : {
+    "en" : "Nightweaver's Looking Glass",
+    "cn" : "纺夜天镜"
+  },
+  "14521" : {
+    "en" : "Reliquary of Truth",
+    "cn" : "真语秘匣"
+  },
+  "13432" : {
+    "en" : "Tamayuratei no Ohanashi",
+    "cn" : "且住亭御咄"
+  },
+  "14405" : {
+    "en" : "Solar Pearl",
+    "cn" : "匣里日月"
+  },
+  "14406" : {
+    "en" : "Prototype Amber",
+    "cn" : "试作金珀"
+  },
+  "14403" : {
+    "en" : "Sacrificial Fragments",
+    "cn" : "祭礼残章"
+  },
+  "14404" : {
+    "en" : "Royal Grimoire",
+    "cn" : "宗室秘法录"
+  },
+  "13408" : {
+    "en" : "Royal Spear",
+    "cn" : "宗室猎枪"
+  },
+  "13409" : {
+    "en" : "Dragonspine Spear",
+    "cn" : "龙脊长枪"
+  },
+  "13406" : {
+    "en" : "Lithic Spear",
+    "cn" : "千岩长枪"
+  },
+  "13407" : {
+    "en" : "Favonius Lance",
+    "cn" : "西风长枪"
+  },
+  "12432" : {
+    "en" : "Flame-Forged Insight",
+    "cn" : "拾慧铸熔"
+  },
+  "13401" : {
+    "en" : "Dragon's Bane",
+    "cn" : "匣里灭辰"
+  },
+  "12433" : {
+    "en" : "Master Key",
+    "cn" : "万能钥匙"
+  },
+  "12430" : {
+    "en" : "Fruitful Hook",
+    "cn" : "硕果钩"
+  },
+  "11101" : {
+    "en" : "Dull Blade",
+    "cn" : "无锋剑"
+  },
+  "12431" : {
+    "en" : "Earth Shaker",
+    "cn" : "撼地者"
+  },
+  "13404" : {
+    "en" : "Blackcliff Pole",
+    "cn" : "黑岩刺枪"
+  },
+  "13405" : {
+    "en" : "Deathmatch",
+    "cn" : "决斗之枪"
+  },
+  "13402" : {
+    "en" : "Prototype Starglitter",
+    "cn" : "试作星镰"
+  },
+  "13403" : {
+    "en" : "Crescent Pike",
+    "cn" : "流月针"
+  },
+  "13419" : {
+    "en" : "Missive Windspear",
+    "cn" : "风信之锋"
+  },
+  "14509" : {
+    "en" : "Kagura's Verity",
+    "cn" : "神乐之真意"
+  },
+  "14506" : {
+    "en" : "Everlasting Moonglow",
+    "cn" : "不灭月华"
+  },
+  "13417" : {
+    "en" : "Moonpiercer",
+    "cn" : "贯月矢"
+  },
+  "14501" : {
+    "en" : "Skyward Atlas",
+    "cn" : "天空之卷"
+  },
+  "12201" : {
+    "en" : "Old Merc's Pal",
+    "cn" : "佣兵重剑"
+  },
+  "14504" : {
+    "en" : "Memory of Dust",
+    "cn" : "尘世之锁"
+  },
+  "13415" : {
+    "en" : "\"The Catch\"",
+    "cn" : "「渔获」"
+  },
+  "14505" : {
+    "en" : "Jadefall's Splendor",
+    "cn" : "碧落之珑"
+  },
+  "13416" : {
+    "en" : "Wavebreaker's Fin",
+    "cn" : "断浪长鳍"
+  },
+  "14502" : {
+    "en" : "Lost Prayer to the Sacred Winds",
+    "cn" : "四风原典"
+  },
+  "13414" : {
+    "en" : "Kitain Cross Spear",
+    "cn" : "喜多院十文字"
+  },
+  "13507" : {
+    "en" : "Calamity Queller",
+    "cn" : "息灾"
+  },
+  "12418" : {
+    "en" : "Mailed Flower",
+    "cn" : "饰铁之花"
+  },
+  "12416" : {
+    "en" : "Akuoumaru",
+    "cn" : "恶王丸"
+  },
+  "13505" : {
+    "en" : "Primordial Jade Winged-Spear",
+    "cn" : "和璞鸢"
+  },
+  "12417" : {
+    "en" : "Forest Regalia",
+    "cn" : "森林王器"
+  },
+  "13509" : {
+    "en" : "Engulfing Lightning",
+    "cn" : "薙草之稻光"
+  },
+  "12410" : {
+    "en" : "Lithic Blade",
+    "cn" : "千岩古剑"
+  },
+  "12411" : {
+    "en" : "Snow-Tombed Starsilver",
+    "cn" : "雪葬的星银"
+  },
+  "11201" : {
+    "en" : "Silver Sword",
+    "cn" : "银剑"
+  },
+  "12414" : {
+    "en" : "Katsuragikiri Nagamasa",
+    "cn" : "桂木斩长正"
+  },
+  "12415" : {
+    "en" : "Makhaira Aquamarine",
+    "cn" : "玛海菈的水色"
+  },
+  "13504" : {
+    "en" : "Vortex Vanquisher",
+    "cn" : "贯虹之槊"
+  },
+  "12412" : {
+    "en" : "Luxurious Sea-Lord",
+    "cn" : "衔珠海皇"
+  },
+  "13501" : {
+    "en" : "Staff of Homa",
+    "cn" : "护摩之杖"
+  },
+  "13502" : {
+    "en" : "Skyward Spine",
+    "cn" : "天空之脊"
+  },
+  "12306" : {
+    "en" : "Skyrider Greatsword",
+    "cn" : "飞天大御剑"
+  },
+  "13516" : {
+    "en" : "Bloodsoaked Ruins",
+    "cn" : "血染荒城"
+  },
+  "12427" : {
+    "en" : "Portable Power Saw",
+    "cn" : "便携动力锯"
+  },
+  "13511" : {
+    "en" : "Staff of the Scarlet Sands",
+    "cn" : "赤沙之杖"
+  },
+  "12301" : {
+    "en" : "Ferrous Shadow",
+    "cn" : "铁影阔剑"
+  },
+  "13514" : {
+    "en" : "Symphonist of Scents",
+    "cn" : "香韵奏者"
+  },
+  "12425" : {
+    "en" : "Tidal Shadow",
+    "cn" : "浪影阔剑"
+  },
+  "12303" : {
+    "en" : "White Iron Greatsword",
+    "cn" : "白铁大剑"
+  },
+  "12302" : {
+    "en" : "Bloodtainted Greatsword",
+    "cn" : "沐浴龙血的剑"
+  },
+  "13515" : {
+    "en" : "Fractured Halo",
+    "cn" : "支离轮光"
+  },
+  "12426" : {
+    "en" : "\"Ultimate Overlord's Mega Magic Sword\"",
+    "cn" : "「究极霸王超级魔剑」"
+  },
+  "13512" : {
+    "en" : "Crimson Moon's Semblance",
+    "cn" : "赤月之形"
+  },
+  "12305" : {
+    "en" : "Debate Club",
+    "cn" : "以理服人"
+  },
+  "13513" : {
+    "en" : "Lumidouce Elegy",
+    "cn" : "柔灯挽歌"
+  },
+  "12424" : {
+    "en" : "Talking Stick",
+    "cn" : "聊聊棒"
+  },
+  "15101" : {
+    "en" : "Hunter's Bow",
+    "cn" : "猎弓"
+  },
+  "11306" : {
+    "en" : "Skyrider Sword",
+    "cn" : "飞天御剑"
+  },
+  "11427" : {
+    "en" : "The Dockhand's Assistant",
+    "cn" : "船坞长剑"
+  },
+  "11305" : {
+    "en" : "Fillet Blade",
+    "cn" : "吃虎鱼刀"
+  },
+  "11426" : {
+    "en" : "Fleuve Cendre Ferryman",
+    "cn" : "灰河渡手"
+  },
+  "12515" : {
+    "en" : "Gest of the Mighty Wolf",
+    "cn" : "狼的武功歌"
+  },
+  "11428" : {
+    "en" : "Sword of Narzissenkreuz",
+    "cn" : "水仙十字之剑"
+  },
+  "12510" : {
+    "en" : "Redhorn Stonethresher",
+    "cn" : "赤角石溃杵"
+  },
+  "11421" : {
+    "en" : "Prized Isshin Blade",
+    "cn" : "「一心传」名刀"
+  },
+  "11420" : {
+    "en" : "Prized Isshin Blade",
+    "cn" : "「一心传」名刀"
+  },
+  "12513" : {
+    "en" : "Fang of the Mountain King",
+    "cn" : "山王长牙"
+  },
+  "11302" : {
+    "en" : "Harbinger of Dawn",
+    "cn" : "黎明神剑"
+  },
+  "12514" : {
+    "en" : "A Thousand Blazing Suns",
+    "cn" : "焚曜千阳"
+  },
+  "11301" : {
+    "en" : "Cool Steel",
+    "cn" : "冷刃"
+  },
+  "11422" : {
+    "en" : "Toukabou Shigure",
+    "cn" : "东花坊时雨"
+  },
+  "12511" : {
+    "en" : "Beacon of the Reed Sea",
+    "cn" : "苇海信标"
+  },
+  "11304" : {
+    "en" : "Dark Iron Sword",
+    "cn" : "暗铁剑"
+  },
+  "11425" : {
+    "en" : "Finale of the Deep",
+    "cn" : "海渊终曲"
+  },
+  "11303" : {
+    "en" : "Traveler's Handy Sword",
+    "cn" : "旅行剑"
+  },
+  "12512" : {
+    "en" : "Verdict",
+    "cn" : "裁断"
+  },
+  "11424" : {
+    "en" : "Wolf-Fang",
+    "cn" : "狼牙"
+  },
+  "12407" : {
+    "en" : "Whiteblind",
+    "cn" : "白影剑"
+  },
+  "12408" : {
+    "en" : "Blackcliff Slasher",
+    "cn" : "黑岩斩刀"
+  },
+  "12405" : {
+    "en" : "Rainslasher",
+    "cn" : "雨裁"
+  },
+  "12406" : {
+    "en" : "Prototype Archaic",
+    "cn" : "试作古华"
+  },
+  "12409" : {
+    "en" : "Serpent Spine",
+    "cn" : "螭骨剑"
+  },
+  "11430" : {
+    "en" : "Sturdy Bone",
+    "cn" : "弥坚骨"
+  },
+  "11432" : {
+    "en" : "Calamity of Eshu",
+    "cn" : "厄水之祸"
+  },
+  "11431" : {
+    "en" : "Flute of Ezpitzal",
+    "cn" : "息燧之笛"
+  },
+  "11434" : {
+    "en" : "Moonweaver's Dawn",
+    "cn" : "织月者的曙色"
+  },
+  "12403" : {
+    "en" : "Sacrificial Greatsword",
+    "cn" : "祭礼大剑"
+  },
+  "12404" : {
+    "en" : "Royal Greatsword",
+    "cn" : "宗室大剑"
+  },
+  "11433" : {
+    "en" : "Serenity's Call",
+    "cn" : "谧音吹哨"
+  },
+  "12401" : {
+    "en" : "Favonius Greatsword",
+    "cn" : "西风大剑"
+  },
+  "12402" : {
+    "en" : "The Bell",
+    "cn" : "钟剑"
+  },
+  "15201" : {
+    "en" : "Seasoned Hunter's Bow",
+    "cn" : "历练的猎弓"
+  },
+  "11405" : {
+    "en" : "Lion's Roar",
+    "cn" : "匣里龙吟"
+  },
+  "11404" : {
+    "en" : "Royal Longsword",
+    "cn" : "宗室长剑"
+  },
+  "11407" : {
+    "en" : "Iron Sting",
+    "cn" : "铁蜂刺"
+  },
+  "11406" : {
+    "en" : "Prototype Rancour",
+    "cn" : "试作斩岩"
+  },
+  "11409" : {
+    "en" : "The Black Sword",
+    "cn" : "黑剑"
+  },
+  "11408" : {
+    "en" : "Blackcliff Longsword",
+    "cn" : "黑岩长剑"
+  },
+  "11401" : {
+    "en" : "Favonius Sword",
+    "cn" : "西风剑"
+  },
+  "11403" : {
+    "en" : "Sacrificial Sword",
+    "cn" : "祭礼剑"
+  },
+  "11402" : {
+    "en" : "The Flute",
+    "cn" : "笛剑"
+  },
+  "11416" : {
+    "en" : "Kagotsurube Isshin",
+    "cn" : "笼钓瓶一心"
+  },
+  "11415" : {
+    "en" : "Cinnabar Spindle",
+    "cn" : "辰砂之纺锤"
+  },
+  "12504" : {
+    "en" : "The Unforged",
+    "cn" : "无工之剑"
+  },
+  "11418" : {
+    "en" : "Xiphos' Moonlight",
+    "cn" : "西福斯的月光"
+  },
+  "11417" : {
+    "en" : "Sapwood Blade",
+    "cn" : "原木刀"
+  },
+  "11419" : {
+    "en" : "Prized Isshin Blade",
+    "cn" : "「一心传」名刀"
+  },
+  "11410" : {
+    "en" : "The Alley Flash",
+    "cn" : "暗巷闪光"
+  },
+  "11412" : {
+    "en" : "Sword of Descension",
+    "cn" : "降临之剑"
+  },
+  "12502" : {
+    "en" : "Wolf's Gravestone",
+    "cn" : "狼的末路"
+  },
+  "12503" : {
+    "en" : "Song of Broken Pines",
+    "cn" : "松籁响起之时"
+  },
+  "11414" : {
+    "en" : "Amenoma Kageuchi",
+    "cn" : "天目影打刀"
+  },
+  "11413" : {
+    "en" : "Festering Desire",
+    "cn" : "腐殖之剑"
+  },
+  "12501" : {
+    "en" : "Skyward Pride",
+    "cn" : "天空之傲"
+  }
+}
