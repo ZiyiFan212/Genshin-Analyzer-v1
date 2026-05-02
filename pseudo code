@@ -1,0 +1,1505 @@
+START
+start class
+
+    create a static immutable string of fallback image path
+
+    create two static immutable maps for storing the item's path
+    Map<String, String> -> UID, Path
+
+    create a static immutable map for storing cache path
+    create and set a static boolean initialized = false
+
+    start method initializeMaps(iconMap, dataMap, folderName)
+        for(every entry of the dataMap: dataMap.entrySet())
+            string id = entry.getKey()
+
+            string processedName = processFilename(entry.getValue().get(en))
+
+            string resourcePath = package path + folderName + processedName
+            if class.getResource(resourcePath) is not null:
+                iconMap add: id -> resourcePath
+    end method
+
+    start method processFilename(name)
+        if name is null, return ""
+
+        return name.toLowercase().replaceAll("[^a-z0-9]", "")
+    end method
+
+    start synchronized method ensureInitialized()
+        if initialized == true, return
+
+        try this:
+            create two map for item translation
+            Map<String, Map<String, String>> translationMap
+
+            initializeMaps(iconMap, translationMap)
+        catch (throwable cause):
+            system print error: cause
+        finally:
+            set initialized == true
+    end method
+
+    start method getIcon(id)
+        ensureInitialized() called out
+
+        if cache contains id:
+            return cache.get(id)
+
+        set string path = fallback path
+        if translationMap contains id:
+            path = translationMap.get(id)
+
+        initialize new url
+        try this:
+            url = class.getResource(path)
+            if url is not null:
+                create an Image with this url
+                cache.put(id, image)
+        catch exception:
+            system prints error
+
+        URL fallback = class.getResource(fallback path)
+        if fallback is not null, return fallback image
+
+        return createMissingImage()
+    end method
+
+    static method getIconPath(id)
+        ensureInitialized()
+        if translationMap contains id:
+            return translationMap.contains(id)
+        return fallback path
+    end method
+
+    static method createMissingImage()
+         create 40*40 with bufferedImage
+
+         new graphics2d()
+         set color and draw the line
+         return image
+    end method
+end class
+END
+
+
+
+
+--Core--
+START
+start abstract class
+
+    abstract method fetchAllData()
+    signature: throws IOException, GenshinRecordFetcher.EmptyPathException,
+           PathValidator.PathException, GenshinRecordFetcher.EmptyListException,
+                GenshinRecordFetcher.MissingComponentException, ReadRecord.DirectoryError;
+
+end abstract class
+END
+
+
+START
+start record class
+
+    parameters: InfoRecord, List<gachaRecord>
+end record class
+END
+
+
+START
+start class
+
+    final path of dataFile and directory
+
+    constructor GenshinRecordFetcher(dataFile, directory)
+        this.dataFile = dataFile
+        this.directory = directory
+    end constructor
+
+    final ObjectMapper = new ObjectMapper()
+
+    start method filePath() throws Exception
+        final PathValidator object pv
+        create a queue<Path> = pv.getPath()
+
+        if queue is empty or queue is null:
+            throw new exception
+
+        return pv.peek()
+    end method
+
+    start method getListBody() throws Exception
+        create a new stack<JsonNode>
+
+        JsonNode node = ObjectMapper.readTree(read file)
+        JsonNode body = node.get(list)
+
+        if body is missing or null:
+            body = node.get(record)
+
+        JsonNode info = node.get(info)
+        stack add info and body
+
+        return stack
+    end method
+
+    start fetchAllData() throw Exception
+
+        create a new map: (UID -> GenshinPlayerData)
+
+        get local data map: (UID -> GenshinPlayerData)
+
+        get JsonNode:
+        a new stack = getListBody()
+
+        List<GachaRecord> list = ObjectMapper.readValue(tree as token,
+                new type reference)
+        InfoRecord info = ObjectMapper.treeToValue(info node, template class)
+
+        validateBodyList()
+        validateUID()
+        sort bodyList in ascending time order
+
+        list = mergeData(UID, list, local data)
+
+        map.put(info.getUID(), new GenshinPlayerData(info, list))
+        return map
+
+    end method
+
+    start method mergeData(newUID, list, local data)
+        if MergeHelper.isDuplicate(newUID, UID list) == false:
+            return list
+
+        List<GachaRecord> localData = MergeHelper.getOldData(local data, UID)
+
+        List<GachaRecord> mergedData = MergeHelper.mergeData(list, localData)
+
+        sort mergeData in ascending time order
+        return mergedData
+
+    end method
+
+    start method validateUID(InfoRecord rd)
+        if rd.getUID() is null or blank:
+            throw new exception
+    end method
+
+    start method validateBodyList(data list)
+        if list is null or empty:
+            throw new exception
+
+        List<String> invalidList = list.stream().filter(this -> isRecordComplete).toList()
+
+        if invalidList is not empty
+            throw new exception
+    end method
+
+    start method isRecordComplete(gachaRecord record)
+        set of integer: 3, 4, 5
+
+        return isBlankOrNull(element) or
+            record.getRank() does not contain the set
+    end method
+
+    start method isBlankOrNull(element)
+        return element is null or empty
+    end method
+END
+
+
+START
+Start class
+
+    final instance of GameService
+
+    constructor Statistics(gameService)
+        this.GameService = gameService
+    end constructor
+
+    start method compute() throws Exception
+        declare a new map: (UID -> records)
+        GenshinPlayerData = map.values().iterator().getValue()
+
+        return generateSummary(player data)
+    end method
+
+    start static method generateSummary(player data)
+        List<GachaRecord> = data.getRecord()
+
+        string uid = data.getUID()
+
+        declare variables for general info:
+        int totalWishes, total primogem, total five-star, etc.
+
+        // for banner 301, 400, 302, and 500:
+        List<Integer> pity = calculatePity(data, banner code)
+        double probability = calculateProbability(data, banner code)
+
+        total five star number = pity.size()
+        total pity = sum of integer in List<Integer>
+        double overallPity = total pity / total five star number
+
+        double overallProbability = weighting calculation
+
+        return new GenshinStatSummary(overallPity, overallProbability, etc)
+    end method
+
+    start static method countFiveStar(records)
+        for each record in records:
+            if rank == 5, counter++
+
+        return counter
+    end method
+
+    start static method countLimitedFiveStar(records)
+        for each record in records:
+            if rank == 5 and is character and not belongs to standard item:
+                counter ++
+
+        return counter
+    end method
+
+    start static method countFiveStarCharacter(records)
+        for each record in records
+            if item is character:
+                counter++
+
+        return counter
+    end method
+
+    start static method calculatePity(records, banner...)
+        for each record in records
+            if the item's banner != banner: continue
+
+            counter++
+            if rank == 5:
+                list.add(counter)
+                counter = 0
+
+        return list
+    end method
+
+    start static method calculateProbability(records, banner)
+        case -> banner type:
+            get Standard banner list
+            default: throws exception
+
+        total = 0
+        win = 0
+        for each record in records:
+            if rank == 5 and belongs to this banner:
+                total++
+                if item does not in standard set:
+                    win++
+
+        if total == 0, return 0
+
+        return win/total * 100
+    end method
+END
+
+
+START
+start interface
+    time()
+    ID()
+END
+
+
+START
+start pathValidator record class
+parameter: path
+
+    start method getPathQueue()
+        create a new queue<path>
+
+        if isValid(this.path) == false:
+            throw new exception
+
+        if isJson(this.path) == false:
+            throw new exception
+
+        queue.add(path)
+        return queue
+    end method
+
+    start method isValid(path)
+        return file.isReadable() and file.exist()
+    end method
+
+    start method isJson(path)
+        get file content type from the path
+
+        if the content type is null:
+            return path.toString().endsWith(JSON)
+        if the content is blank:
+            throw new exception
+        return content type.equalIgnoreCase("application/JSON")
+    end method
+END
+
+
+--I18n
+
+START
+start generalMessageManager
+
+    set a static resource bundle
+    set a static string currentLang
+
+    set a final map for localization in special case
+
+    static block:
+        load(en)
+    end static block
+
+    start static method load(lang)
+        ser currentLang = lang
+
+        Locale = forLanguageTag(lang)
+        bundle = getBundle(
+                file name,
+                locale,
+                getControl(Resource bundle.format_default))
+
+    end method
+
+    start static method get(key)
+        try:
+            return bundle.get(key)
+        catch exception:
+            return key
+    end method
+
+    start static method getLocalizedType(key)
+        neutral key = localizationMap.getOrDefault(key, key)
+
+        first key = "item.type" + neutral key
+        first = get(first key)
+        if first is not equal to first key:
+            return first
+
+        return input
+    end method
+
+    start static method getCurrentLang()
+        return this.currentLang
+    end method
+END
+
+
+START
+start GUILanguageManager
+ set a static resource bundle
+    set a static string currentLang
+
+    set a final map for localization in special case
+
+    static block:
+        load(en)
+    end static block
+
+    start static method load(lang)
+        ser currentLang = lang
+
+        Locale = forLanguageTag(lang)
+        bundle = getBundle(
+                file name,
+                locale,
+                getControl(Resource bundle.format_default))
+
+    end method
+
+    start static method get(key)
+        try:
+            return bundle.get(key)
+        catch exception:
+            return key
+    end method
+
+    start static method getCurrentLang()
+        return this.currentLang
+    end method
+END
+
+START
+start ItemTranslationManager class
+
+    set two final itemMap:
+    Map<String, Map<String, String>>
+    each itemMap = getTranslation(item type)
+
+    start static method getTranslation(type)
+        InputStream = class.getResource(file name + type)
+        if InputStream == null:
+            InputStream.getResource(file name)
+
+        if InputStream == null:
+            throw new exception
+
+        try with resource (InputStream):
+            return ObjectMapper.readValue(InputStream,
+                    new typeReference)
+        catch exception:
+            return empty map
+    end method
+
+    start static method return name(id, lang)
+        if itemMap contains id:
+            return itemMap.get(id)
+
+        return id
+    end method
+END
+
+
+START
+start class Main
+
+    start Main
+        create final logger instance
+        create final file handler instance
+
+        run on AWT thread ->
+            try:
+                initialize storageCConfiguration()
+                file handler = config.LogPath
+                logger.addHandler() with simple formatter
+
+                UIManager.setLookAndFeel()
+            catch exception:
+                logger log the cause
+
+            new MainWindow(.setVisible(true)
+
+    end Main
+
+END
+
+
+-- model
+
+START
+start class GenshinGachaStatSummary
+
+    private objects to store the statistic
+    String uid, int totalWishes, etc.
+
+    constructor GenshinGachaStatSummary()
+        assign values to all private objects
+    end constructor
+
+    getters
+    start method getUID()
+        return UID
+    end method
+    ...
+
+END
+
+
+START
+start record class GachaRecord
+parameters: string type, rank, ID, time, etc
+
+    @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+    constructor GachaRecord
+        assign values to all variables
+    end constructor
+
+    @JsonGetter(fields)
+    start method getRank()
+        return this.rank
+    end method
+    // other getters..
+
+    @Override
+    start method toString()
+        return the concatenation of all fields in a pretty format
+    end method
+
+    // implement interface
+    start method Time()
+        return this.time
+    end method
+
+    start method ID()
+        return this.ID()
+    end method
+end class
+END
+
+
+START
+start InfoRecord record class
+parameter: string uid, lang, time zone, etc
+
+    JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+        constructor GachaRecord
+            assign values to all variables
+        end constructor
+
+        @JsonGetter(fields)
+        start method getUID()
+            return this.uid
+        end method
+        // other getters..
+
+        start method withCurrentTime()
+            get local time
+            long time stamp = format(local time)
+
+            return a new InfoRecord(parameter...)
+        end method
+
+        start method ID()
+            return this.ID()
+        end method
+    end class
+END
+
+
+---components
+START
+start class RetrieveRecord
+
+    set private static object List<GachaRecord>
+    set private static string lang
+
+    static block:
+        prepareRecord(new List)
+        lang = "en"
+    end static block
+
+    start static method prepareRecord(list)
+        records = list
+
+        records.sort(a, b ->
+                ascending time order, or else
+                    compare ID
+    end method
+
+    // static getters and setters
+
+    start static pityWithTrailing(banner code)
+        final map pityForFiveStar: Map<GachaRecord, Integer>
+
+        final var:
+        List<GachaRecord> fiveStar, List<Integer> pityValue
+
+        pity = 0
+        for each record in records:
+            if record does not belong to banner: continue
+            pity ++
+
+            if rank == 5:
+                fiveStar.add(rd)
+                pity.add(pityValue)
+                pity = 0
+        end for
+
+        for every element in parallel lists:
+            pityForFiveStar.put(five start, pity value)
+        end for
+
+        return new pityWithTrailing(pityForFiveStar, pity)
+    end method
+
+    start pityWithTrailing record class()
+    parameter: map, int
+
+    start static method parseTime(time)
+        format of standard time
+
+        return parse(time.format)
+    end method
+
+    start static method compareID(a, b)
+        if a or b is null, return 0
+
+        return a compare to b
+    end method
+END
+
+
+START
+start class JFXChart
+
+    start static JFXChart()
+        create tab pane
+        set tab closing unavailable
+
+        for each code in banner codes
+            title = generalMessageManager.get(code)
+            new tab (title), then add it to the pane
+
+        add tab pane to root
+    end method
+
+
+    start static buildBannerPane(banner code)
+        create vbox with spacing 12
+        configure setting
+
+        pwt = retrieveRecord.calculatePity(banner code)
+        pityMap = pityforfivestar()
+        trailing = railing()
+
+        if trailing > 0
+            add createTrailingRow(trailing) and separator to vbox
+
+        for each entry in pitymap
+            add createrecordrow(entry.key, entry.value) to vbox
+
+        scrollPane = new scrollPane(vbox)
+        set fit to width true
+        return scrollPane
+    end method
+
+
+    start static createTrailingRow(pityValue)
+        create hbox spacing 15
+        set alignment left
+        spacer width = 40
+
+        bar = progressbar(pityValue / 90)
+        set bar width 200
+        set grow always
+        label = "trailing (" + pityValue + ")"
+        set label width 150
+        add spacer, bar, label to row
+        set cursor hand
+
+        return row
+    end method
+
+
+    start static createRecordRow(rd, pityValue)
+        create hbox spacing 15
+        set alignment left
+
+        try
+            url = get resource path from assetsManager using rd.item_id
+            if url exists:
+                img = load image
+            else:
+                img = fallBackImage()
+            set icon size 40 x 40
+        catch error
+            print error
+
+        bar = progressbar(pityValue / 90)
+        bar configure
+
+        name = returnName(rd.item_id, lang)
+        label = name + " (" + pityValue + ")"
+        set label width 150
+
+        add them to row
+
+        on click -> popWindow(rd, pityValue)
+        set cursor hand
+
+        return row
+    end method
+
+
+    start static popWindow(rd, pity)
+        create alert information
+
+        title = GeneralMessageManager.get(title)
+
+        content =
+            "item: " + name +
+            " pity: " + pity +
+            " date: " + rd.time
+        show alert
+    end method
+
+    start static fallbackimage()
+        return image from fallbackurl
+    end method
+end class
+END
+
+START
+start class SwingChart
+
+    set a private final List<GachaRecord>
+    set a map for clickable chart
+    set a map fpr pityforfivestar
+    // other static constant variables
+
+    constructor SwingChart(banner)
+        assign values to local variables
+
+        set header panel with border layout and background
+        set label (GeneralMessageManager.get(label))
+        add background color and border to the label
+
+        header panel add all components
+        view point, scrolling, color configre
+    end constructor
+
+    embedded class: ChartContent
+    constructor chartContent()
+        set background white
+
+        pwt = retrieveRecord.calculatepPity(banner)
+        pityforfivestar = pwt.pityforfivestar()
+        trailing = pwt.trailing()
+
+        totalHeight = compute height based on number of items
+        set preferred size
+
+        on mouse click
+            point = click position
+            for each rect, record in clickablebar
+                if rect contains point
+                    popwindow(record)
+                end if
+    end constructor
+
+    start static paintComponent(graphics)
+        clear clickablebar first
+
+        set layout values (parameters:
+                height, gap, iconSize, etc.)
+
+        if trailing > 0
+            y = starty + i * (barheight + gap)
+            drawtrailingbar(trailing, y)
+            draw separator line
+
+        for each record's pity value in pityMap:
+            calculate Y height
+            image = geticon(record.item_id)
+            if image exists:
+                draw image at position
+            end if
+
+            barwidth = (pityvalue / 90) * maxbarwidth
+            draw rounded bar (gold color)
+            store rectangle in clickablebar
+
+            get label from messageManager
+            draw label next to bar
+
+        end for
+    end method
+
+    start static popWindow(record)
+        text with gacha details
+        show message dialog with text
+    end method
+
+    start static drawTrailingBar(pity value, y)
+        bar width = (pity value / 90) * max barwidth
+
+        draw gray rounded bar
+        label = "trailing (" + pity value + ")"
+        add label
+    end method
+    end embedded class
+end class
+END
+
+
+START
+    public constant color code:
+    background dark,
+    text color,
+    muted, etc.
+END
+
+START
+start class sideBarPanel
+
+    set final controller instance
+
+    set all swing components
+    // other final constants
+
+    constructor sideBarPanel(controller)
+        this.controller = controller
+        set layout border layout
+        sidebar = buildSidebar()
+        add sidebar to center
+    end constructor
+
+    start static buildSidebar()
+        create sidebar panel (vertical layout)
+
+        // header
+        create header panel
+        title = gui Language manager.get("app.title")
+        create title label with title
+
+        create lang button
+        if icon exists:
+            set icon
+        else
+            set fallback text
+        end if
+        if click lang button -> popupmenu(lang button)
+        add title label and lang button to header panel
+        add header panel to sidebar
+
+        sublabel = guiLanguageManager.get("app.subtitle")
+        add sublabel and separator
+
+        active label = section label
+        create and add uid selector
+
+        views label = section label
+        overview button -> on click controller.showOverview()
+        chart swing button -> on click controller.showChart()
+        chart jfx button -> on click controller.showJFXChart()
+        add buttons to sidebar
+
+        create search field
+        search -> on click controller.onSearch()
+        add searchfield
+
+        actions label = "actions"
+        load local -> controller.loadLocal()
+        import file -> controller.onImportFile()
+        save json -> controller.onSaveJson()
+        export excel -> controller.onExportExcel()
+        add all buttons
+        add separator
+
+        status label = guiLanguageManager.get("status.ready")
+        add status label
+
+        return sidebar
+    end method
+
+    start static refreshLanguage()
+        update all labels and button texts using guiLanguageManager
+        controller.triggerMainWindowRefresh()
+        revalidate layout
+        repaint ui
+    end method
+
+    start static set status(msg)
+        status label = msg
+    end method
+
+    start static section label(text, top pad)
+        label = uppercase(text)
+        return styled label
+    end method
+
+    start static actionBtn(text, color)
+        create button with text
+        set background color
+        return button
+    end method
+
+    start static sep()
+        return separator line
+    end
+
+    start static popupmenu(button)
+        create popup
+
+        english -> load language "en"
+            refreshLanguage()
+
+        chinese -> load language "zh"
+            refreshLanguage()
+        show popup near button
+    end method
+END
+
+
+START
+start ProcessController class
+
+    set map for loaded data
+    set active player
+    set MainWindow
+    initialize swing components
+    // other private static constant
+
+    constructor ProcessController(Main window)
+        this.MainWindow = Main window
+    end constructor
+
+    start method loadLocal()
+        create a file chooser
+        create a filter, only accept JSON or application/JSON
+
+        if local data file path is created:
+            data path.toFile()
+        else:
+            create new File()
+
+        load local data(data path)
+    end method
+
+    start method onExportExcel()
+        create a new excel writer(active player)
+        string val = excel writer
+        Open a new message window(val)
+    end method
+
+    start method onSaveJson()
+        if active player is null, return
+
+        set a status
+        try:
+            savePlayerData(active player, path)
+            open a message dialog(message)
+        catch exception
+            set status and display error text
+
+    end method
+
+    start onSearch()
+        if the uid of active player is null, return
+
+        create a map (UID -> data) = search(uid)
+        if map is empty:
+            show error message and set a status
+        else:
+            found = map.getValue()
+            UIDSelector.set(true - > found)
+            set status
+    end method
+
+    start static onUIDSelected()
+        item = uidSelector.selectedItem
+        if item is null return
+
+        active player = loaded data[item]
+        if active player is null return
+
+        enable export excel and save json
+        refreshActiveView()
+    end method
+
+    start static showoverview()
+        if active player is null
+            mainWindow.shoWwelcome()
+            return
+
+        current view = "overview"
+        mainWindow.showOverview(active player)
+    end method
+
+    start static showChart()
+        if active player is null
+            mainWindow.showWelcome()
+            return
+        end if
+
+        current view = "chart_swing"
+        mainWindow.showSwingChart(active player)
+    end method
+
+    start static showJFXChart()
+        if active player is null
+            mainWindow.showWelcome()
+            return
+        current view = "chart_jfx"
+        mainWindow.showJFXChart(active player)
+    end method
+
+    start static refreshActiveView()
+        if current view == "chart_jfx"
+            mainWindow.showJFXChart(active player)
+            return
+
+        if current view == "chart_swing"
+            mainWindow.showSwingChart(active player)
+            return
+
+        mainWindow.showOverview(active player)
+        current view = "overview"
+    end method
+
+    start static load local data(dir)
+        set status
+        try
+            result =getDirectory(dir)
+            MergeIntoLoaded(result.data)
+            set status
+        catch error
+            set status
+    end method
+
+    start static mergeIntoLoaded(incoming)
+        for each uid, fresh in incoming
+            previous = loaded data[uid]
+
+            if previous is null
+                loaded data[uid] = fresh
+            else
+                merged = mergeData(fresh.records, previous.records)
+                loaded data[uid] = new player data(fresh.info, merged)
+            end if
+
+        clear uid selector
+        for each uid in loaded data
+            add uid to uid selector
+
+        if previous selection exists in loaded data
+            select previous selection
+        else if loaded data not empty
+            select first item
+    end method
+
+    start static bind ui(uid selector, search field,
+            export excel, save json)
+        assign components
+
+        on uid selector change
+            on uid Selected()
+    end method
+
+    start static triggerMainWindowRefresh()
+        Main window.refreshContentLanguage()
+    end method
+END
+
+
+START
+start ExcelWriting class
+
+    start static method writingAction(data)
+        try:
+            excelExporter.writeExcel(data)
+        catch exception:
+            return a fail message
+
+        return a success message
+    end method
+END
+
+
+START
+start loadDirectory class
+
+    start method getFromDirectory(path)
+        try:
+            readRecord.getAllRecord(path)
+            loadResult(map data, success msg, true)
+        catch exception:
+            loadResult(empty map, error msg, false)
+
+    end method
+
+    record class loadDirectory
+    parameters: map value, string msg, boolean bool
+
+END
+
+
+START
+start class search
+
+    start static method searchData(uid, data)
+        genshin player data = data.get(id)
+        if data is null, return a new map
+        else, return the player dta
+    end method
+
+    start static method binarySearch(uid, data)
+        convert data to list<Entry>
+        quickSort(list. low bound, upper bound)
+        binary search implementation:
+        //...
+    return an empty map is nothing is found
+
+    start static method quickSort(list, low bound, high bound)
+        int pivot = partition()
+        quickSort is called recursively
+    end method
+
+    start static method partition(list, low bound, high bound)
+        pivot = list.getLast()
+
+        for element in the list:
+            if current element is smaller than pivot:
+                swap between low bound element
+
+        move pivot after smaller element
+        return i + 1
+    end method
+END
+
+START
+    start static mainWindow()
+        initialize controller
+        load language "en"
+        set layout border layout
+
+        sidebar = new sidebar panel(controller)
+        add sidebar to left
+
+        content area = panel with card layout
+        add buildWelcomePanel as "welcome"
+        add buildOverviewPanel as "overview"
+        add buildChartPanel as "chart"
+        show "welcome"
+        set window size and position
+    end method
+
+    start static buildWelcomePanel()
+        create panel
+        label = guiLanguageManager.get("welcome")
+        add label to panel
+        return panel
+    end method
+
+    start static buildOverviewPanel()
+        create panel
+        create card container
+        add overview label to card
+        add card to panel
+        return panel
+    end method
+
+    start static showOverview(player)
+        if player is null or no records
+            show error
+            show welcome()
+            return
+        end if
+        summary = statistics.generateSummary(player)
+        setOverviewText()
+    end method
+
+    start static showSwingChart(player)
+        if player is null
+            show welcome() and return
+
+        prepareRecords(player.records)
+        set language
+
+        clear SwingChart container
+
+        create tabs
+        for each banner code
+            add tab with new swing chart(code)
+
+        add tabs to container
+        show "swing" chart mode
+        refresh container
+    end method
+
+    start static showJFXChart(player)
+        if player is null
+            show welcome() and return
+        prepareRecords(player.records)
+        set language
+
+        run this ->
+            set jfx scene with new JFXChart
+            run this on swing thread ->
+                show "jfx" chart mode
+                refresh panel
+                show "chart" panel
+
+    end method
+
+    start static set status(msg)
+        sidebar.set status(msg)
+    end method
+
+    start static setOverviewText()
+        build html string using summary data
+        overview label = html
+    end method
+
+    start static render row(key, value, color)
+        label = guiLanguageManager.get(key)
+        return formatted html row
+    end method
+
+    start static refreshContentLanguage()
+        update the welcome label
+        if summary exists
+            setOverviewText()
+
+        refresh ui too
+        controller.refreshContentLanguage()
+    end method
+END
+
+
+
+--- STORAGE
+
+START
+start class
+    set final objects
+    // other instances
+
+    start static exportExcel(player data, lang)
+        records = copy of player data
+        get uid from the data
+        sort records by time descending time
+
+        create image cache map
+        create workbook
+
+        for each banner index i
+            sheet = create sheet with localized banner name
+            setup sheet layout (row height, column width)
+            create header row with labels
+
+            for each record in records
+                if not wanted banner's item, continue
+
+                row = create row(row num)
+                addIconToCell(workbook, drawing, record.item_id, row num, image cache)
+
+                name = itemTranslationManager.return name(record.item_id, lang)
+                type = localize record.item_type
+                rank = get rank
+                if rank != 3
+                    set colored cells (name, time, type, rank)
+                row num++
+            end for
+        end for
+
+        filename = generate filename with uid and time
+        write workbook to file
+    end method
+
+    start static addIconToCell(workbook, drawing, item id, rown um, cache)
+        if cache map contains id:
+            cache.get(id)
+        else
+            path = getPath(item id)
+            load image as bytes array
+            if image exists:
+                picture = workbook.addPicture(bytes)
+                cache[item id] = picture
+
+        end if
+
+       draw picture
+    end method
+
+    start static colorText(rank, text)
+        if rank == 4
+            apply purple font
+        else if rank == 5
+            apply gold font
+        return rich text
+    end method
+
+    start static localtime()
+        now = current time
+        return formatted time string
+    end method
+
+    start static parseTime(time)
+        return convert string to datetime
+    end method
+END
+
+
+START
+start storage config class
+
+    create public static path for data, excel, and log
+
+    start static method initialize()
+        try:
+            create path in local
+        catch exception
+            return
+    end method
+END
+
+
+START
+start store record class
+
+    start static method saveData(player data)
+        new ObjectMapper created
+        mapper enable pretty format
+
+        InfoRecord update the record with current time
+        new GenshinPlayerData with new InfoRecord
+
+        path = directory.resolve(name + config.dataPath)
+        mapper.writeValue()
+    end method
+END
+
+
+
+START
+start read record class
+
+    set directory path
+    set final ObjectMapper
+
+    constructor read record()
+        this.directory = directory
+        mapper is created
+    end constructor
+
+    start static method readRecord()
+        if file does not exists or readable:
+            throw exception
+
+        try with resource (stream<path> iterate through all files)
+            deserialize to POJO again
+        catch exception:
+            system print error message
+        return data map
+    end method
+END
+
+
+--UTILITIES
+
+START
+start class detector
+
+    set two final set of string id for standard item
+
+    start static method isStandard(id)
+        for each id in standard set:
+            if input id is contained:
+                return true
+
+        return false
+    end method
+END
+
+
+START
+start merge helper class
+
+    start static method isDuplicate(uid, uids)
+        for each x in uids
+            if x equals uid
+                return true
+            end if
+        end for
+
+        return false
+    end method
+
+    start static getOldData(uid, map)
+        player = map[uid]
+        if player is null
+            return empty list
+        end if
+        return player.records
+    end method
+
+    start static merge data(new data, local data)
+        if new data empty and local data empty
+            return empty list
+        end if
+
+        if local data empty:
+            merge list = copy new data
+        else if new data empty:
+            merge list = copy local data
+        else:
+            latest new = get latest(new data, true)
+            latest old = get latest(local data, true)
+            oldest new = get latest(new data, false)
+            oldest old = get latest(local data, false)
+
+            if latest new < latest old and oldest old < oldest new:
+                merge list = local data
+            else:
+                create map
+                for each item in local data
+                    map[item.id] = item
+                end for
+                for each item in new data
+                    map[item.id] = item
+                end for
+
+                merge list = map values
+            end if
+        end if
+
+        merge list = validate(merge list)
+        insertion sort(merge list)
+        return merge list
+    end method
+
+    start static method get latest(data, is latest)
+        if is latest:
+            return max time in data
+        else:
+            return min time in data
+    end method
+
+    start static parse time(time)
+        try
+            return parsed datetime
+        catch error
+            return minimum datetime
+        end try
+    end method
+
+    start static shouldMoveAfter(left, right)
+        l = parse time(left.time)
+        r = parse time(right.time)
+
+        if l > r return true
+        if l < r return false
+
+        return compareID(left.id, right.id) > 0
+    end method
+
+    start static validate(list)
+        valid list = empty list
+
+        for each item in list
+            if is valid time(item.time)
+                add item to valid list
+
+        return valid list
+    end method
+
+    start static is valid time(time)
+        if not match pattern
+            return false
+
+        try:
+            parse and return the time
+        catch error
+            return false
+    end method
+END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

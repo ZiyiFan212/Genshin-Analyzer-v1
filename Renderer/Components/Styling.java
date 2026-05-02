@@ -1,8 +1,12 @@
 package Renderer.Components;
 import java.awt.*;
 
-public class Styling {
-
+/**
+ * @course Teacher: Daniel Vriesinga
+ * @author Frank Fan at 2026/04/27
+ * A class contains static color code from swing components.
+ */
+public class Styling {// start class
 
     // palette color, set to static
     public static final Color backgroundDark = new Color(26,  26,  46);
@@ -14,4 +18,4 @@ public class Styling {
     public static final Color accentColor = new Color(126, 184, 247);
 
 
-}
+}// end class
