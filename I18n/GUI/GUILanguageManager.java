@@ -28,7 +28,7 @@ public class GUILanguageManager {
         // load bundle from classpath (should be -> src/i18n/GUI/GUImessage_<lang>.properties)
         Locale locale = Locale.forLanguageTag(lang);
         bundle = ResourceBundle.getBundle(
-                "i18n.GUI.GUImessage",
+                "I18n.GUI.GUImessage",
                 locale,
                 ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT)
         );

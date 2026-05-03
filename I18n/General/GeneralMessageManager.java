@@ -40,7 +40,7 @@ public class GeneralMessageManager {
         // load properties file from classpath, avoiding no bundle found issue
         Locale locale = Locale.forLanguageTag(lang);
         bundle = ResourceBundle.getBundle(
-                "i18n.General.message",// providing a base name
+                "I18n.General.message",// providing a base name
                 locale,
                 ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT)// UTC+8!!!
         );
