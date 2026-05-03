@@ -13,26 +13,26 @@ Here's the outline of the structure, helping navigate throughout the program.
 src/
 ├── Renderer/                        # All GUI components and related service actions
 │   ├── Window
-│   │   └── MainWindow.java          # Root JFrame — entry point of the GUI
+│   │   └── MainWindow.java          # The entry point of the GUI
 │   ├── Components/
-│   │   ├── SidebarPanel.java        # Left sidebar with all controls
-│   │   ├── ProcessController.java   # Controller that bridges UI and service 
-│   │   └── Styling.java             # Shared color palette constants for painting UI
+│   │   ├── SidebarPanel.java        # Functional sidebar with all actions
+│   │   ├── ProcessController.java   # Controller class for bridging UI and service 
+│   │   └── Styling.java             # Constant color palette for UI
 │   ├── Charts/
 │   │   ├── SwingChart.java          # Swing-based pity horizontal bar chart
 │   │   ├── JFXChart.java            # JavaFX-based pity horizontal bar chart 
 │   │   └── RetrieveRecord.java      # Shared chart data layer with pity calculation
 │   └── ServiceAction/
-│       ├── Search.java              # Searching the player data with UID
+│       ├── Search.java              # Searches the player data with UID
 │       ├── LoadDirectory.java       # Loads all JSON files from the local directory
-│       └── ExcelWriting.java        # Excel export logic
+│       └── ExcelWriting.java        # Writes and export Excel to the directory
 │
 ├── core/
 │   ├── Genshin/
-│   │   ├── GenshinPlayerData.java     # User-defined class: holds player info + records
-│   │   ├── GenshinRecordFetcher.java  # Parses and validates imported JSON
-│   │   ├── GameService.java           # An abstract class for contracting the service 
-│   │   └── Statistics.java            # Generates gacha statistics summary
+│   │   ├── GenshinPlayerData.java     # Holds player info and records
+│   │   ├── GenshinRecordFetcher.java  # Validates imported JSON and fetch all records
+│   │   ├── GameService.java           # Contracting the fetching service 
+│   │   └── Statistics.java            # Gacha statistics algorithm
 │   ├── Interface/
 │   │   └── GenshinPlayerData.java     # An interface implemented by the player data
 │   └── Path/
@@ -40,19 +40,19 @@ src/
 │
 ├── Model/
 │   ├── RecordTemplate/
-│   │      ├── GachaRecord.java           # A user-defined class containing a single wish record
+│   │      ├── GachaRecord.java           # Holds a single wish record
 │   │      └── InfoRecord.java            # An immutable class for storing the record information
 │   └── Genshin/
-│       └── GenshinGachaStatSummary.java  # Record holding computed statistics
+│       └── GenshinGachaStatSummary.java  # Stores computed statistics
 │
 ├── Storage/
 │   ├── Excel Export/
-│   │   └── ExcelExporter.java       # Writes player data to local Excel
+│   │   └── ExcelExporter.java       # Writes player data to an Excel
 │   ├── ReadWrite/
 │   │   ├── ReadRecord.java          # Reads saved JSON from local storage
 │   │   └── StoreRecord.java         # Writes player data to local JSON
 │   └── Configuration/
-│       └── StorageConfig.java       # Initialize storage path 
+│       └── StorageConfig.java       # Initializes storage path 
 │
 ├── Utilities/
 │   ├── StandardItemDetector/
@@ -63,18 +63,18 @@ src/
 ├── i18n/
 │   ├── Items/
 │   │   ├── ItemTranslationManager.java      # Manages item translation (en/zh)
-│   │   ├── Character.json                   # A JSON file contains character translation
-│   │   └── Weapon.json                      # A JSON file contains weapon translation
+│   │   ├── Character.json                   # A JSON file containing character translation
+│   │   └── Weapon.json                      # A JSON file containing weapon translation
 │   ├── GUI/
 │   │   ├── GUILanguageManager.java          # Manages UI string bundles (en/zh)
 │   │   └── GUImessage_en/zh.properties      # UI string resources
 │   └── General/
-│       ├── GeneralMessageManager.java       # Manages content string bundles (en/zh)
+│       ├── GeneralMessageManager.java       # Manages service string bundles (en/zh)
 │       └── message_en/zh.properties         # Content string resources
 │
 └── Assets/
     ├── AssetsManager.java           # Resolves icon paths by item ID
-    └── Character & WeaponIcons/     # Contain all items' icons
+    └── Character & WeaponIcons/     # Contains all item icons
 ```
 
 ---
